@@ -72,10 +72,11 @@ A matriz de eventos final e os IDs reais ficam a cargo do item 7 do painel (Trac
 
 ## 5. Pendências antes de considerar a LP "pronta" (ver itens 6–10 do painel)
 
-- [ ] Trocar `WHATSAPP_NUMBER` pelo número real da AMS Digital em `js/config.js`.
+- [x] Trocar `WHATSAPP_NUMBER` pelo número real da AMS Digital em `js/config.js`.
 - [ ] Configurar `SHEET_WEBHOOK_URL` (passo 2 acima) — item 6 do painel (Integrações).
 - [ ] IDs de GA4 e Meta Pixel — item 7 do painel (Tracking).
-- [ ] Revisar texto de consentimento e nota de privacidade com a Gigi antes do lançamento — item 8 do painel (LGPD). Hoje o formulário já coleta só nome + WhatsApp com checkbox de autorização, mas o texto final da política ainda não foi validado.
+- [x] Texto de consentimento e nota de privacidade revisados pela Gigi (item 8 do painel — LGPD): finalidade, prazo de retenção (12 meses) e canal de exclusão via WhatsApp já estão no ar. **Ainda pendente, feito por você (não é código):** garantir que a planilha de leads do Google Sheets fique com compartilhamento restrito (nunca "qualquer pessoa com o link"), e de fato excluir/arquivar leads sem contato depois de 12 meses.
 - [ ] Metadata (title/description finais), Open Graph com imagem e dados estruturados — item 9 do painel (SEO).
 - [ ] Logo real da AMS em `assets/logo/` (hoje a página usa um wordmark tipográfico + inicial "A" em círculo dourado, porque ainda não há um arquivo de logo em PNG/SVG anexado a este repositório).
+- [ ] Logos reais dos clientes na seção "Do simples ao completo" (CrisYoga, Método Controle Consciente, Vivência Ser Mulher, Encontro e Meditação para Mulheres, Entre Lobas, Studio Simone Santos) — não consegui buscar essas imagens automaticamente (ambiente sem acesso à internet aberta). Me manda os arquivos de logo (ou os links diretos das imagens) que eu subo em `assets/clients/` e troco o texto pelo logo.
 - [ ] QA mobile real (não só redimensionar o navegador) + Playwright antes de publicar — item 10 do painel (Deploy).

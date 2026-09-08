@@ -488,6 +488,12 @@ img { max-width: 100%; display: block; }
   max-width: 560px;
 }
 
+.footer-copyright {
+  font-size: 0.78rem;
+  color: #8a8471;
+  margin-top: -8px;
+}
+
 /* ---------- WhatsApp flutuante (fixo no mobile) ---------- */
 .wa-float {
   position: fixed;

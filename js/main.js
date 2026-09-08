@@ -2,6 +2,10 @@
   "use strict";
   var CFG = window.AMS_CONFIG || {};
 
+  // ---------- Ano do copyright: sempre atual, sem precisar editar todo ano ----------
+  var yearEl = document.getElementById("copyright-year");
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
   // ---------- Redes sociais no rodapé: só aparecem se a URL estiver configurada ----------
   [["instagram-link", CFG.INSTAGRAM_URL], ["linkedin-link", CFG.LINKEDIN_URL]].forEach(function (pair) {
     var el = document.getElementById(pair[0]);

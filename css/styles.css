@@ -285,6 +285,15 @@ img { max-width: 100%; display: block; }
   transform: translateY(-2px);
 }
 
+.proof-item .proof-logo {
+  height: 36px;
+  width: auto;
+  max-width: 140px;
+  object-fit: contain;
+  object-position: left center;
+  margin-bottom: 10px;
+}
+
 .proof-item .proof-name {
   font-family: var(--font-display);
   font-weight: 600;

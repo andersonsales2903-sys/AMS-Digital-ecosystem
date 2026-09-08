@@ -146,6 +146,11 @@ img { max-width: 100%; display: block; }
   border-radius: 8px;
 }
 
+.logo-img {
+  height: 40px;
+  width: auto;
+}
+
 .header .btn { padding: 10px 20px; font-size: 0.9rem; }
 
 /* ---------- Hero (fundo escuro, destaque dourado) ---------- */

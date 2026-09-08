@@ -10,10 +10,8 @@ window.AMS_CONFIG = {
   // Nome exibido no header, footer e nas mensagens pré-preenchidas do WhatsApp.
   BRAND_NAME: "AMS Digital",
 
-  // TODO(Anderson): número real da AMS em formato internacional, sem espaços/símbolos.
-  // Ex: "5511999999999". Enquanto for o placeholder abaixo, o botão funciona mas
-  // abre um número inválido — troque antes de publicar.
-  WHATSAPP_NUMBER: "5500000000000",
+  // Número real da AMS, formato internacional sem espaços/símbolos.
+  WHATSAPP_NUMBER: "5511963144061",
 
   // Cole aqui a URL do Google Apps Script (Web App) depois de publicado.
   // Ver integrations/apps-script.gs e README.md, seção "Integração com Google Sheets".

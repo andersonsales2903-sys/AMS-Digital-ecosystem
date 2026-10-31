@@ -77,6 +77,13 @@ img { max-width: 100%; display: block; }
 .center { text-align: center; }
 .max-w-prose { max-width: 640px; margin-left: auto; margin-right: auto; }
 
+.section-intro { margin-bottom: 40px; }
+.section-intro--tight { margin-bottom: 24px; }
+.section-intro .section-note { color: #6b6558; }
+
+.narrow-list { max-width: 720px; margin: 0 auto; }
+.sr-only-input { position: absolute; opacity: 0; }
+
 /* ---------- Botões ---------- */
 .btn {
   display: inline-flex;
@@ -108,6 +115,12 @@ img { max-width: 100%; display: block; }
   color: var(--graphite);
 }
 .btn-ghost:hover { border-color: var(--gold); }
+
+.btn-ghost--dark {
+  color: var(--off-white);
+  border-color: #3a3527;
+}
+.btn-ghost--dark:hover { border-color: var(--gold); }
 
 .btn-block { width: 100%; }
 
@@ -188,15 +201,19 @@ img { max-width: 100%; display: block; }
 
 .hero-proof strong { color: var(--champagne); }
 
-/* ---------- Dois caminhos (cards) ---------- */
+/* ---------- Caminhos (cards) ---------- */
 .paths {
   display: grid;
   gap: 24px;
   grid-template-columns: 1fr;
 }
 
-@media (min-width: 760px) {
+@media (min-width: 640px) {
   .paths { grid-template-columns: 1fr 1fr; }
+}
+
+@media (min-width: 980px) {
+  .paths { grid-template-columns: repeat(3, 1fr); }
 }
 
 .path-card {
@@ -367,6 +384,8 @@ img { max-width: 100%; display: block; }
   color: var(--off-white);
   border-radius: var(--radius);
   padding: 40px;
+  max-width: 640px;
+  margin: 0 auto;
 }
 
 .form-wrap h2 { color: var(--white); }
@@ -445,6 +464,7 @@ img { max-width: 100%; display: block; }
 }
 
 .form-success.show { display: block; }
+.form-success h3 { color: var(--white); }
 
 .form-success .icon {
   font-size: 2.4rem;

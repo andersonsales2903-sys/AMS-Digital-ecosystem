@@ -29,9 +29,9 @@ HTML/CSS/JS estático, sem framework, sem build. Cloudflare Pages com repositór
 Serviços da home: Sites institucionais; Landing pages de alta conversão (prontas para SEO e tráfego pago em Google, Meta e TikTok); Páginas com painel de leads; Tráfego pago; Gestão de loja no Mercado Livre; CRM para studios de Pilates e Yoga.
 
 ## Clientes citados (todos autorizados)
-Orthoprime e Velox Seguros (assinaram contrato), CrisYoga e Studio Simone Santos. Velox: gestão de anúncios Meta. Orthoprime: gestão de marketplaces, sem link público por enquanto.
+Orthoprime e Velox Seguros (assinaram contrato), CrisYoga e Studio Simone Santos. Velox: gestão de anúncios Meta. Orthoprime: gestão da loja no Mercado Livre. A Orthoprime tem site próprio, mas ainda não o usa (vende pelo Mercado Livre), então não linkar o site. Link só se o Anderson passar a URL da loja dela no Mercado Livre (a home mercadolivre.com.br não serve, porque não leva à loja).
 
-Texto aprovado para o Orthoprime (card de cliente): "Gestão de marketplaces: anúncios, imagens, vídeos e acompanhamento da operação."
+Texto aprovado para o Orthoprime (card de cliente): "Gestão da loja no Mercado Livre: anúncios, imagens, vídeos e acompanhamento da operação."
 
 Texto-base do painel "Gestão de loja no Mercado Livre" (o Anderson quer escrever melhor; R2 refina e passa no humanizer): cuidamos da loja inteira, com títulos e descrições escritos para a busca, imagens, vídeos, preço e acompanhamento dos concorrentes. Ferramentas e agentes especializados analisam a operação e recomendam mudanças em descrição, preço e posicionamento. Prazo médio: a definir com o Anderson.
 
@@ -70,6 +70,6 @@ Mobile validado (sem rolagem horizontal), performance medida, SEO básico e Open
 
 ## Pendências abertas
 1. Capturas reais do CRM (só depois que o MVP for finalizado; por ora, tour em réplica HTML).
-2. Link do Orthoprime (não há; deixar sem link).
+2. URL da loja do Orthoprime no Mercado Livre (se o Anderson quiser linkar; sem ela, o card fica sem link).
 3. Screenshots dos 6 modelos da galeria: o Anderson envia os prints (desktop e celular); o ambiente do Code não acessa sites externos. Até lá, usar a logo do cliente como espaço reservado.
 4. Copy nova do site institucional (a copy da LP antiga serve só de referência; a frase "sem mensalidade" está proibida).

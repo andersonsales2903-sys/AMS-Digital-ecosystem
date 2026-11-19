@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<!-- build: refacao-institucional-2026-11-19 -->
+<!-- Tour em réplica HTML/CSS/JS, com dados inventados. Sem Supabase, sem conta
+     demo, sem login. Estilo visual inspirado no MVP real (crm-studio-simone-santos),
+     na paleta dourado/grafite da AMS. Nunca usar dado do Studio Simone Santos. -->
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Tour do CRM para Studios — AMS Digital</title>
+<meta name="description" content="Veja como funciona o CRM para studios de Pilates e Yoga: chamada, alunos, cobranças e mensagens, com dados de exemplo.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/styles.css">
+<link rel="stylesheet" href="style.css">
+
+<script src="../js/config.js"></script>
+</head>
+<body>
+
+<header class="header">
+  <div class="container">
+    <a href="../" class="logo">
+      <img src="../assets/logo/ams-mkt-digital.png" alt="AMS Digital" class="logo-img">
+    </a>
+    <a href="../#formulario" class="btn btn-primary" data-cta="nav">Falar no WhatsApp</a>
+  </div>
+</header>
+
+<section class="crm-intro">
+  <div class="container">
+    <a href="../#servicos" class="crm-intro__back">← Voltar pro site</a>
+    <span class="eyebrow">CRM para Studios de Pilates e Yoga</span>
+    <h1>Veja como fica a rotina do seu studio organizada</h1>
+    <p class="lead-light">Tour com dados de exemplo (Ana, Bruno, Carla e Diego não existem). Quando o sistema for liberado com conta própria, essas telas viram capturas reais.</p>
+  </div>
+</section>
+
+<section class="crm-tour">
+  <div class="crm-tour__shell">
+    <!-- Sidebar — desktop -->
+    <aside class="crm-sidebar">
+      <div class="crm-sidebar__brand">
+        <img src="../assets/logo/ams-mkt-digital.png" alt="" class="crm-sidebar__mark">
+        <div>
+          <p class="crm-sidebar__studio">Studio Exemplo</p>
+          <p class="crm-sidebar__sub">Pilates e Yoga</p>
+        </div>
+      </div>
+      <nav class="crm-nav" id="crm-nav">
+        <button type="button" class="crm-nav__item is-active" data-tab="chamada" data-cta="crm-tab">
+          <span class="crm-nav__icon">✓</span> Chamada
+        </button>
+        <button type="button" class="crm-nav__item" data-tab="alunos" data-cta="crm-tab">
+          <span class="crm-nav__icon">◍</span> Alunos
+        </button>
+        <button type="button" class="crm-nav__item" data-tab="cobrancas" data-cta="crm-tab">
+          <span class="crm-nav__icon">◉</span> Cobranças
+        </button>
+        <button type="button" class="crm-nav__item" data-tab="mensagens" data-cta="crm-tab">
+          <span class="crm-nav__icon">◐</span> Mensagens
+        </button>
+        <button type="button" class="crm-nav__item crm-nav__item--upgrade" data-tab="atendente" data-cta="crm-tab">
+          <span class="crm-nav__icon">✦</span> Atendente IA
+          <span class="crm-badge">Upgrade</span>
+        </button>
+      </nav>
+    </aside>
+
+    <!-- Top bar — mobile -->
+    <div class="crm-topbar">
+      <select id="crm-tab-select" class="crm-tab-select" aria-label="Escolher aba">
+        <option value="chamada">Chamada</option>
+        <option value="alunos">Alunos</option>
+        <option value="cobrancas">Cobranças</option>
+        <option value="mensagens">Mensagens</option>
+        <option value="atendente">Atendente IA (Upgrade)</option>
+      </select>
+    </div>
+
+    <main class="crm-main">
+      <!-- ---------- CHAMADA ---------- -->
+      <div class="crm-panel is-active" data-panel="chamada">
+        <h2>Chamada</h2>
+        <p class="crm-panel__hint">Clique no aluno pra marcar presença na turma de hoje.</p>
+        <div class="crm-card">
+          <div class="crm-card__header">
+            <span>Pilates · Turma das 8h</span>
+            <span class="crm-pill crm-pill--muted">Hoje</span>
+          </div>
+          <ul class="crm-roll" id="crm-roll">
+            <li class="crm-roll__item" data-presente="false">
+              <span class="crm-roll__avatar">AS</span>
+              <span class="crm-roll__name">Ana Souza</span>
+              <span class="crm-roll__status crm-pill crm-pill--pending">Ausente</span>
+            </li>
+            <li class="crm-roll__item" data-presente="false">
+              <span class="crm-roll__avatar">BL</span>
+              <span class="crm-roll__name">Bruno Lima</span>
+              <span class="crm-roll__status crm-pill crm-pill--pending">Ausente</span>
+            </li>
+            <li class="crm-roll__item" data-presente="false">
+              <span class="crm-roll__avatar">CD</span>
+              <span class="crm-roll__name">Carla Dias</span>
+              <span class="crm-roll__status crm-pill crm-pill--pending">Ausente</span>
+            </li>
+            <li class="crm-roll__item" data-presente="false">
+              <span class="crm-roll__avatar">DR</span>
+              <span class="crm-roll__name">Diego Reis</span>
+              <span class="crm-roll__status crm-pill crm-pill--pending">Ausente</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ---------- ALUNOS ---------- -->
+      <div class="crm-panel" data-panel="alunos">
+        <h2>Alunos</h2>
+        <p class="crm-panel__hint">Cadastro simples: modalidade, plano e contato de cada aluno.</p>
+        <div class="crm-table-wrap">
+          <table class="crm-table">
+            <thead>
+              <tr><th>Aluno</th><th>Modalidade</th><th>Plano</th><th>Status</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Ana Souza</td><td>Pilates</td><td>3x/semana</td><td><span class="crm-pill crm-pill--ok">Ativo</span></td></tr>
+              <tr><td>Bruno Lima</td><td>Yoga</td><td>2x/semana</td><td><span class="crm-pill crm-pill--ok">Ativo</span></td></tr>
+              <tr><td>Carla Dias</td><td>Pilates</td><td>Avulso</td><td><span class="crm-pill crm-pill--ok">Ativo</span></td></tr>
+              <tr><td>Diego Reis</td><td>Yoga</td><td>3x/semana</td><td><span class="crm-pill crm-pill--pending">Trancado</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ---------- COBRANÇAS ---------- -->
+      <div class="crm-panel" data-panel="cobrancas">
+        <h2>Cobranças</h2>
+        <p class="crm-panel__hint">Exemplo de cobrança por Pix, direto pro aluno.</p>
+        <div class="crm-card">
+          <ul class="crm-billing" id="crm-billing">
+            <li class="crm-billing__item">
+              <div>
+                <p class="crm-billing__name">Ana Souza</p>
+                <p class="crm-billing__desc">Mensalidade Pilates · Nov/2026</p>
+              </div>
+              <span class="crm-pill crm-pill--ok">Pago</span>
+            </li>
+            <li class="crm-billing__item">
+              <div>
+                <p class="crm-billing__name">Bruno Lima</p>
+                <p class="crm-billing__desc">Mensalidade Yoga · Nov/2026</p>
+              </div>
+              <button type="button" class="crm-btn-pix" data-cta="crm-pix-cobrar">Cobrar via Pix</button>
+            </li>
+            <li class="crm-billing__item">
+              <div>
+                <p class="crm-billing__name">Diego Reis</p>
+                <p class="crm-billing__desc">Mensalidade Yoga · Out/2026</p>
+              </div>
+              <span class="crm-pill crm-pill--late">Atrasado</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ---------- MENSAGENS ---------- -->
+      <div class="crm-panel" data-panel="mensagens">
+        <h2>Mensagens</h2>
+        <p class="crm-panel__hint">Modelo de confirmação de aula, pronto pra enviar.</p>
+        <div class="crm-card crm-template">
+          <p class="crm-template__label">Modelo · Confirmação de aula</p>
+          <p class="crm-template__text">"Oi, Carla! Confirmando sua aula de Pilates hoje às 8h. Qualquer imprevisto, me avisa por aqui 🙂"</p>
+        </div>
+        <div class="crm-card">
+          <ul class="crm-billing">
+            <li class="crm-billing__item">
+              <div><p class="crm-billing__name">Carla Dias</p><p class="crm-billing__desc">Confirmação de aula · hoje, 07:10</p></div>
+              <span class="crm-pill crm-pill--ok">Enviado</span>
+            </li>
+            <li class="crm-billing__item">
+              <div><p class="crm-billing__name">Ana Souza</p><p class="crm-billing__desc">Confirmação de aula · hoje, 07:10</p></div>
+              <span class="crm-pill crm-pill--ok">Enviado</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ---------- ATENDENTE IA (upgrade) ---------- -->
+      <div class="crm-panel" data-panel="atendente">
+        <div class="crm-upgrade-banner">
+          <span class="crm-badge">Upgrade</span>
+          <p>O Atendente IA não faz parte do CRM. É um produto à parte: atendimento automático via WhatsApp, vendido sob consulta.</p>
+        </div>
+        <h2>Como fica a conversa</h2>
+        <p class="crm-panel__hint">Simulação em HTML, sem IA de verdade rodando aqui.</p>
+        <div class="crm-phone">
+          <div class="crm-phone__chat" id="crm-chat"></div>
+          <button type="button" class="btn btn-ghost crm-chat__replay" id="crm-chat-replay">Reiniciar simulação</button>
+        </div>
+      </div>
+    </main>
+  </div>
+</section>
+
+<section class="section section--off">
+  <div class="container center">
+    <h2>Curtiu o que viu?</h2>
+    <p class="section-note">Esse é um tour com tela de exemplo. O sistema real já roda pro Studio Simone Santos.</p>
+    <a href="../#formulario" class="btn btn-primary" data-cta="crm-cta-final" data-servico="CRM para Studios de Pilates e Yoga">Quero isso pro meu studio</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <a href="../" class="logo">
+      <img src="../assets/logo/ams-mkt-digital.png" alt="AMS Digital" class="logo-img">
+    </a>
+    <p class="footer-copyright">© <span id="copyright-year">2026</span> AMS Digital. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<a class="wa-float js-wa-generico" id="wa-float" href="#" target="_blank" rel="noopener" aria-label="Falar no WhatsApp" data-cta="float">💬</a>
+
+<script src="../js/main.js"></script>
+<script src="tour.js"></script>
+</body>
+</html>

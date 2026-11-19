@@ -1,19 +1,23 @@
-# LP AMS Digital — guia de configuração e publicação
+# AMS Digital — guia de configuração e publicação
 
-Página estática (`index.html` + `css/styles.css` + `js/`), sem framework, sem build step. Mesmo padrão de arquitetura do projeto [CrisYoga](https://github.com/andersonsales2903-sys/crisyoga-lp), publicada no Cloudflare Pages.
+Site institucional estático (`index.html` + `crm-studios/` + `css/` + `js/`), sem framework, sem build step, publicado no Cloudflare Pages. Fonte de verdade do projeto: `CLAUDE.md` nesta mesma pasta — se este README divergir dele, vale o `CLAUDE.md`.
 
-Referência do plano completo (posicionamento, copy, design, CRO): painel no Notion — "Painel de Construção — LP Institucional AMS Digital".
+Branch de trabalho: `refacao-institucional`. A `main` é a versão antiga (LP simples), ainda no ar em digitalams.com.br — não fazer push nela até o Anderson aprovar a troca.
 
 ## Estrutura
 
 ```
-index.html
-css/styles.css
-js/config.js        → toda configuração fica aqui (nome, WhatsApp, integrações, tracking)
-js/main.js          → UTM, tracking, cards "dois caminhos", formulário → WhatsApp
-integrations/apps-script.gs → cole no Google Apps Script (passo 2 abaixo)
-_headers             → cabeçalhos de segurança lidos automaticamente pelo Cloudflare Pages
-assets/logo/         → colocar aqui o logo real (hoje a página usa um wordmark tipográfico)
+index.html                    → home: hero, 6 serviços, galeria de modelos, clientes, como funciona, FAQ, formulário
+crm-studios/index.html        → tour do CRM (réplica HTML com dados fictícios), noindex
+crm-studios/style.css         → estilos específicos do tour (sidebar, cards, chat simulado)
+crm-studios/tour.js           → troca de aba, chamada, Pix de exemplo, chat do Atendente IA
+css/styles.css                → design system compartilhado (cores, tipografia, componentes da home)
+js/config.js                  → toda configuração fica aqui (nome, WhatsApp, integrações, tracking)
+js/main.js                    → UTM, tracking, painéis de serviço, galeria, formulário → WhatsApp
+integrations/apps-script.gs   → cole no Google Apps Script (passo 2 abaixo)
+assets/logo/                  → logo da AMS (símbolo + frase "Estratégia, conversão e crescimento")
+assets/clients/               → logos dos clientes usados na galeria de modelos
+scripts/edit_logo.py          → script que gerou o logo atual a partir do original com "MKT DIGITAL"
 ```
 
 ## 1. Configurar WhatsApp e ligar/desligar tracking
@@ -23,7 +27,7 @@ Tudo fica no topo de `js/config.js`:
 ```js
 window.AMS_CONFIG = {
   BRAND_NAME: "AMS Digital",
-  WHATSAPP_NUMBER: "5500000000000",  // TROCAR pelo número real antes de publicar
+  WHATSAPP_NUMBER: "5511963144061",
   SHEET_WEBHOOK_URL: "",             // cole aqui a URL do Apps Script (passo 2)
   GA4_MEASUREMENT_ID: "",
   META_PIXEL_ID: "",
@@ -32,11 +36,11 @@ window.AMS_CONFIG = {
 };
 ```
 
-Enquanto `SHEET_WEBHOOK_URL`, `GA4_MEASUREMENT_ID` e `META_PIXEL_ID` estiverem vazios, a página funciona normalmente — só não grava na planilha nem dispara eventos (sem erro no console).
+Enquanto `SHEET_WEBHOOK_URL`, `GA4_MEASUREMENT_ID` e `META_PIXEL_ID` estiverem vazios, o site funciona normalmente — só não grava na planilha nem dispara eventos (sem erro no console).
 
 ## 2. Configurar a captura de lead no Google Sheets (~5 min)
 
-Precisa ser feito manualmente uma vez, na conta Google dona da planilha — a publicação de um Apps Script como "Web App" exige autorização no navegador, não dá pra automatizar por API.
+Precisa ser feito manualmente uma vez, na conta Google dona da planilha. Publicar um Apps Script como "Web App" exige autorização no navegador, não dá pra automatizar por API.
 
 1. Crie uma Google Sheet nova (ex: "AMS Digital - Leads").
 2. Menu **Extensões → Apps Script**.
@@ -51,33 +55,37 @@ Precisa ser feito manualmente uma vez, na conta Google dona da planilha — a pu
 
 A aba "Leads" é criada automaticamente no primeiro envio, com as colunas: Data/Hora, Nome, WhatsApp, Serviço, Origem, Campanha (UTM), Página, Status.
 
+**Importante:** deixe o compartilhamento da planilha restrito (nunca "qualquer pessoa com o link pode editar"). É a forma mais simples de evitar vazamento dos dados de contato.
+
 ## 3. Tracking (GA4 / Meta Pixel)
 
-Eventos já implementados em `js/main.js`:
+Eventos já implementados:
 
-| Evento | Quando dispara | Parâmetros |
-|---|---|---|
-| `cta_click` | Clique em qualquer botão de CTA (nav, hero, cards, WhatsApp flutuante, form) | `local` |
-| `form_submit` | Envio do formulário | `servico`, `origem`, `campanha` |
-| `whatsapp_click` | No momento do redirecionamento pro WhatsApp | `origem` |
+| Evento | Quando dispara | Onde | Parâmetros |
+|---|---|---|---|
+| `cta_click` | Clique em qualquer botão com `data-cta` | home e tour | `local` |
+| `servico_card_click` | Clique no resumo de um card de serviço | home | `servico` |
+| `painel_abertura` | O painel do serviço abre (não dispara ao fechar) | home | `servico` |
+| `modelo_ampliar` | Abertura do modal de um modelo na galeria | home | `modelo` |
+| `demo_tab_switch` | Troca de aba no tour do CRM | `/crm-studios` | `aba` |
+| `form_submit` | Envio do formulário | home | `servico`, `origem`, `campanha` |
+| `whatsapp_click` | Redirecionamento pro WhatsApp | home e tour | `origem` |
 
-A matriz de eventos final e os IDs reais ficam a cargo do item 7 do painel (Tracking). Assim que tiver os IDs, é só colar em `GA4_MEASUREMENT_ID` e `META_PIXEL_ID`.
+Assim que tiver os IDs reais de GA4/Meta Pixel, é só colar em `GA4_MEASUREMENT_ID` e `META_PIXEL_ID` — os eventos acima já disparam para os dois automaticamente.
 
 ## 4. Publicar no Cloudflare Pages
 
-1. Suba este repositório no GitHub (branch principal).
-2. No Cloudflare Pages, crie um novo projeto **"Connect to Git"** apontando pro repositório.
+1. Confirme que está publicando a branch `refacao-institucional`, não a `main`.
+2. No Cloudflare Pages, o projeto já existe e gera uma prévia por branch — valide nessa prévia antes de qualquer promoção pra produção.
 3. Build command: nenhum (deixar vazio). Output directory: `/` (raiz).
-4. Deploy. O arquivo `_headers` na raiz já aplica cabeçalhos básicos de segurança automaticamente — não precisa configurar nada extra no Cloudflare pra isso.
+4. O arquivo `_headers` na raiz já aplica cabeçalhos básicos de segurança automaticamente.
 
-## 5. Pendências antes de considerar a LP "pronta" (ver itens 6–10 do painel)
+## 5. Pendências abertas (ver `CLAUDE.md` para o texto completo)
 
-- [x] Trocar `WHATSAPP_NUMBER` pelo número real da AMS Digital em `js/config.js`.
-- [ ] Configurar `SHEET_WEBHOOK_URL` (passo 2 acima) — item 6 do painel (Integrações).
-- [ ] IDs de GA4 e Meta Pixel — item 7 do painel (Tracking).
-- [x] Texto de consentimento e nota de privacidade revisados pela Gigi (item 8 do painel — LGPD): finalidade, prazo de retenção (12 meses) e canal de exclusão via WhatsApp já estão no ar. **Ainda pendente, feito por você (não é código):** garantir que a planilha de leads do Google Sheets fique com compartilhamento restrito (nunca "qualquer pessoa com o link"), e de fato excluir/arquivar leads sem contato depois de 12 meses.
-- [ ] Metadata (title/description finais), Open Graph com imagem e dados estruturados — item 9 do painel (SEO).
-- [x] Logo real da AMS aplicada em `assets/logo/ams-mkt-digital.png` (header e rodapé).
-- [x] Logos reais dos clientes aplicadas em `assets/clients/` (CrisYoga, Método Controle Consciente, Vivência Ser Mulher, Entre Lobas, Studio Simone Santos).
-- [ ] Falta só a logo de "Encontro e Meditação para Mulheres" — quando enviar, aplico do mesmo jeito.
-- [ ] QA mobile real (não só redimensionar o navegador) + Playwright antes de publicar — item 10 do painel (Deploy).
+- [ ] Serviço prestado e link do cliente **Orthoprime** — hoje sinalizado como provisório no card de clientes e precisa da confirmação do Anderson.
+- [ ] Decisão sobre **plano de manutenção** de sites e landing pages (sim ou não) — hoje sinalizado como "em definição" no FAQ.
+- [ ] **Capturas reais do CRM**: o tour em `/crm-studios` usa réplica HTML com dados fictícios (Ana Souza, Bruno Lima, Carla Dias, Diego Reis). Quando o MVP (`crm-studio-simone-santos`) estiver pronto, trocar pelas capturas reais.
+- [ ] **Screenshots reais** dos 6 modelos na galeria: hoje cada card mostra o logo do cliente dentro da moldura, como espera enquanto não há captura de tela real da página. Substituir em `index.html`, dentro de `.device-frame__placeholder`.
+- [ ] Logo de **"Encontro e Meditação para Mulheres"** ainda não enviada — o card usa o ícone abstrato de útero como provisório.
+- [ ] IDs de GA4 e Meta Pixel.
+- [ ] QA mobile real (não só redimensionar o navegador) antes de promover a branch pra `main`.

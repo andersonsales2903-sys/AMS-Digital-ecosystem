@@ -1,0 +1,345 @@
+/* ==========================================================================
+   Tour do CRM — réplica HTML/CSS/JS, paleta dourado/grafite da AMS.
+   Layout inspirado no MVP real (sidebar + cards rounded), sem reaproveitar
+   a paleta azul do cliente nem qualquer dado real.
+   ========================================================================== */
+
+.crm-intro {
+  background: var(--graphite);
+  color: var(--off-white);
+  padding: 32px 0 40px;
+}
+
+.crm-intro__back {
+  display: block;
+  margin-bottom: 18px;
+  font-size: 0.85rem;
+  color: var(--silver);
+  text-decoration: none;
+}
+.crm-intro__back:hover { color: var(--champagne); }
+
+.crm-intro h1 { color: var(--white); margin-bottom: 10px; }
+
+.lead-light {
+  color: var(--silver);
+  max-width: 620px;
+  margin: 0;
+}
+
+.crm-tour {
+  background: var(--off-white);
+  padding: 32px 0 64px;
+}
+
+.crm-tour__shell {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+/* ---------- Sidebar ---------- */
+.crm-sidebar {
+  display: none;
+  flex-shrink: 0;
+  width: 220px;
+  background: var(--graphite);
+  border-radius: var(--radius);
+  padding: 20px 14px;
+}
+
+@media (min-width: 860px) {
+  .crm-sidebar { display: block; }
+}
+
+.crm-sidebar__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 8px 18px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #3a3527;
+}
+
+.crm-sidebar__mark { width: 28px; height: 28px; object-fit: contain; }
+.crm-sidebar__studio { margin: 0; font-family: var(--font-display); font-weight: 600; color: var(--white); font-size: 0.95rem; }
+.crm-sidebar__sub { margin: 0; font-size: 0.75rem; color: var(--silver); }
+
+.crm-nav { display: flex; flex-direction: column; gap: 4px; }
+
+.crm-nav__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 10px;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--silver);
+  cursor: pointer;
+}
+
+.crm-nav__item:hover { background: #241f14; color: var(--champagne); }
+
+.crm-nav__item.is-active {
+  background: var(--champagne);
+  color: var(--graphite);
+  font-weight: 600;
+}
+
+.crm-nav__icon { font-size: 0.95rem; width: 18px; text-align: center; }
+
+.crm-nav__item--upgrade { position: relative; }
+
+.crm-badge {
+  margin-left: auto;
+  background: var(--gold);
+  color: var(--graphite);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  padding: 2px 8px;
+}
+
+/* ---------- Top bar mobile ---------- */
+.crm-topbar { margin-bottom: 16px; }
+
+@media (min-width: 860px) {
+  .crm-topbar { display: none; }
+}
+
+.crm-tab-select {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--champagne);
+  background: var(--white);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--graphite);
+}
+
+/* ---------- Main / painéis ---------- */
+.crm-main { flex-grow: 1; min-width: 0; }
+
+.crm-panel { display: none; }
+.crm-panel.is-active { display: block; }
+
+.crm-panel h2 { margin-bottom: 4px; }
+.crm-panel__hint { color: #6b6558; font-size: 0.9rem; margin-bottom: 20px; }
+
+.crm-card {
+  background: var(--white);
+  border: 1px solid var(--champagne);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+.crm-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-display);
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+/* ---------- Pills de status ---------- */
+.crm-pill {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+.crm-pill--ok { background: #e3f3e3; color: #1f7a3d; }
+.crm-pill--pending { background: var(--champagne); color: var(--bronze); }
+.crm-pill--late { background: #fbe2e2; color: #b3261e; }
+.crm-pill--muted { background: var(--off-white); color: #6b6558; }
+
+/* ---------- Chamada ---------- */
+.crm-roll { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+
+.crm-roll__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  background: var(--off-white);
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.crm-roll__item[data-presente="true"] { background: #f3ecd4; }
+
+.crm-roll__avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--champagne);
+  color: var(--bronze);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.crm-roll__name { flex-grow: 1; font-size: 0.95rem; }
+
+/* ---------- Tabela de alunos ---------- */
+.crm-table-wrap {
+  background: var(--white);
+  border: 1px solid var(--champagne);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  overflow-x: auto;
+}
+
+.crm-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; white-space: nowrap; }
+.crm-table th { text-align: left; padding: 12px 16px; background: var(--off-white); color: #6b6558; font-weight: 600; font-size: 0.8rem; }
+.crm-table td { padding: 12px 16px; border-top: 1px solid var(--off-white); }
+
+/* ---------- Cobranças / Mensagens ---------- */
+.crm-billing { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+
+.crm-billing__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  background: var(--off-white);
+}
+
+.crm-billing__name { margin: 0; font-weight: 600; font-size: 0.92rem; }
+.crm-billing__desc { margin: 0; font-size: 0.8rem; color: #6b6558; }
+
+.crm-btn-pix {
+  background: var(--gold);
+  color: var(--graphite);
+  border: none;
+  border-radius: 999px;
+  padding: 7px 14px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.crm-pix-box {
+  margin-top: 10px;
+  padding: 12px;
+  background: var(--graphite);
+  color: var(--champagne);
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  word-break: break-all;
+  font-family: monospace;
+}
+
+.crm-template__label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--bronze); font-weight: 600; margin-bottom: 8px; }
+.crm-template__text { margin: 0; font-style: italic; color: #4a463d; }
+
+/* ---------- Atendente IA: chat simulado ---------- */
+.crm-upgrade-banner {
+  background: var(--champagne);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.crm-upgrade-banner p { margin: 0; font-size: 0.88rem; color: #4a3f1a; }
+
+.crm-phone {
+  max-width: 320px;
+  background: var(--graphite);
+  border-radius: 26px;
+  padding: 14px 10px;
+}
+
+.crm-phone__chat {
+  background: #e9e3d4;
+  border-radius: 14px;
+  min-height: 320px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.crm-bubble {
+  max-width: 80%;
+  padding: 8px 12px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  line-height: 1.35;
+  opacity: 0;
+  transform: translateY(6px);
+  animation: crmBubbleIn 0.25s ease forwards;
+}
+
+@keyframes crmBubbleIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.crm-bubble--in {
+  align-self: flex-start;
+  background: var(--white);
+  border-bottom-left-radius: 2px;
+}
+
+.crm-bubble--out {
+  align-self: flex-end;
+  background: var(--gold);
+  color: var(--graphite);
+  border-bottom-right-radius: 2px;
+}
+
+.crm-bubble--typing {
+  align-self: flex-start;
+  background: var(--white);
+  padding: 10px 14px;
+}
+
+.crm-bubble--typing span {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: 3px;
+  border-radius: 50%;
+  background: #9a9488;
+  animation: crmTypingDot 1s infinite ease-in-out;
+}
+.crm-bubble--typing span:nth-child(2) { animation-delay: 0.15s; }
+.crm-bubble--typing span:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes crmTypingDot {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+  30% { transform: translateY(-4px); opacity: 1; }
+}
+
+.crm-chat__replay {
+  margin-top: 12px;
+  width: 100%;
+  border-color: #3a3527;
+  color: var(--off-white);
+}

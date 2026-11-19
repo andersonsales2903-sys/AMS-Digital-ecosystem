@@ -125,6 +125,24 @@
     });
   });
 
+  // ---------- Eventos nomeados do CLAUDE.md (item Tracking e LGPD) ----------
+  // Clique no card de serviço (o resumo clicável, não o CTA interno).
+  document.querySelectorAll('[data-cta="servico-card-click"]').forEach(function (el) {
+    el.addEventListener("click", function () {
+      track("servico_card_click", { servico: el.getAttribute("data-servico-nome") });
+    });
+  });
+
+  // Abertura do painel: dispara só quando o <details> do serviço abre, não quando fecha.
+  document.querySelectorAll(".service-card").forEach(function (details) {
+    details.addEventListener("toggle", function () {
+      if (details.open) {
+        var nome = details.querySelector("[data-servico-nome]");
+        track("painel_abertura", { servico: nome ? nome.getAttribute("data-servico-nome") : "" });
+      }
+    });
+  });
+
   // ---------- Pílulas de rádio (serviço de interesse) ----------
   var servicoGroup = document.getElementById("servico-group");
   function selecionarServico(valor) {
@@ -143,15 +161,72 @@
     });
   }
 
-  // ---------- Cards "dois caminhos": pré-selecionam o serviço e rolam pro formulário ----------
+  // ---------- Cards de serviço: pré-selecionam a opção e rolam pro formulário ----------
+  // Só intercepta o clique se o formulário existir NESTA página. Em páginas
+  // sem formulário (ex.: /crm-studios), o link segue o href normalmente —
+  // senão o clique ficava travado sem navegar e sem rolar pra lugar nenhum.
   document.querySelectorAll("[data-servico]").forEach(function (el) {
     el.addEventListener("click", function (e) {
+      var alvo = document.getElementById("formulario");
+      if (!alvo) return;
       e.preventDefault();
       selecionarServico(el.getAttribute("data-servico"));
-      var alvo = document.getElementById("formulario");
-      if (alvo) alvo.scrollIntoView({ behavior: "smooth", block: "start" });
+      alvo.scrollIntoView({ behavior: "smooth", block: "start" });
     });
   });
+
+  // ---------- Galeria de modelos: filtro por categoria ----------
+  var filtersEl = document.getElementById("gallery-filters");
+  if (filtersEl) {
+    var modelCards = document.querySelectorAll(".model-card");
+    filtersEl.querySelectorAll(".filter-pill").forEach(function (pill) {
+      pill.addEventListener("click", function () {
+        filtersEl.querySelectorAll(".filter-pill").forEach(function (p) { p.classList.remove("is-active"); });
+        pill.classList.add("is-active");
+        var filtro = pill.getAttribute("data-filter");
+        modelCards.forEach(function (card) {
+          var mostra = filtro === "todos" || card.getAttribute("data-category") === filtro;
+          card.hidden = !mostra;
+        });
+      });
+    });
+  }
+
+  // ---------- Galeria de modelos: modal de ampliação ----------
+  var modal = document.getElementById("model-modal");
+  if (modal) {
+    var modalFrame = document.getElementById("model-modal-frame");
+    var modalTitle = document.getElementById("model-modal-title");
+    var modalLink = document.getElementById("model-modal-link");
+    var modalClose = document.getElementById("model-modal-close");
+
+    var LINKS_MODELOS = {
+      "CrisYoga": "https://www.crisyoga.com.br/",
+      "Método Controle Consciente": "http://metodo-controle-consciente.netlify.app",
+      "Vivência Ser Mulher": "http://sermulher.programa4estacoes.com.br",
+      "Encontro e Meditação para Mulheres": "http://meditacaoutero.lovable.app",
+      "Studio Simone Santos": "http://studiosimonesantos.com.br",
+      "Entre Lobas": "http://entre-lobas.lovable.app"
+    };
+
+    document.querySelectorAll(".model-card").forEach(function (card) {
+      card.addEventListener("click", function () {
+        var nome = card.getAttribute("data-modelo");
+        var frameSrc = card.querySelector(".device-frame").cloneNode(true);
+        modalFrame.innerHTML = "";
+        modalFrame.appendChild(frameSrc);
+        modalTitle.textContent = nome;
+        modalLink.href = LINKS_MODELOS[nome] || "#";
+        track("modelo_ampliar", { modelo: nome });
+        modal.showModal();
+      });
+    });
+
+    modalClose.addEventListener("click", function () { modal.close(); });
+    modal.addEventListener("click", function (e) {
+      if (e.target === modal) modal.close();
+    });
+  }
 
   // ---------- WhatsApp flutuante e CTA do hero: mensagem genérica ----------
   var msgGenerico = encodeURIComponent(

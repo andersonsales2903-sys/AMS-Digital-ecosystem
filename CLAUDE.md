@@ -41,9 +41,15 @@ Capturas em moldura de celular e notebook, ampliação na própria página, filt
 - entre-lobas.lovable.app (só a página pública; o painel admin é mostrado só em apresentação ao vivo e nunca entra no site)
 
 ## Página do CRM
-Tour clicável com capturas reais do MVP, com dados fictícios (ex.: Ana Souza, Bruno Lima, Carla Dias, Diego Reis). Abas: Chamada (clicar no aluno marca presença), Alunos, Cobranças (exemplo de cobrança por Pix), Mensagens (modelo de confirmação de aula) e **Atendente IA**, marcada como Upgrade, com uma conversa de WhatsApp animada em HTML, sem API. O Atendente IA nunca aparece como parte do CRM: é produto à parte, vendido como upgrade.
+Tour clicável com telas fictícias (ex.: Ana Souza, Bruno Lima, Carla Dias, Diego Reis). Abas: Chamada (clicar no aluno marca presença), Alunos, Cobranças (exemplo de cobrança por Pix), Mensagens (modelo de confirmação de aula) e **Atendente IA**, marcada como Upgrade, com uma conversa de WhatsApp animada em HTML, sem API. O Atendente IA nunca aparece como parte do CRM: é produto à parte, vendido como upgrade.
 
-O MVP do CRM roda no Cloudflare e **não tem conta de demonstração**. Primeiro passo: criar uma conta demo com alunos inventados, depois capturar de 8 a 10 telas. Nunca usar dados do Studio Simone Santos.
+**Decisão (19/11): site primeiro, tour em réplica HTML.** O site não espera o CRM ficar pronto. As telas do tour são refeitas em HTML/CSS/JS estático, no estilo visual do MVP (repositório `crm-studio-simone-santos`, só para consulta visual), com dados inventados. Sem Supabase, sem conta demo, sem login. Quando o CRM estiver finalizado, trocamos por capturas reais. Nunca usar dados do Studio Simone Santos.
+
+Aviso: o MVP hoje tem Dashboard, Agenda, Financeiro e Cadastros (Alunos, Modalidades, Profissionais). Não tem tela de Mensagens (essa aba do tour é mock). "Chamada" provavelmente corresponde à Agenda.
+
+## Fluxo de trabalho no Git
+- Fonte única: este repositório. Branch de trabalho: `refacao-institucional`. A `main` é a LP antiga no ar: não fazer push nela até o Anderson aprovar.
+- Cloudflare Pages gera prévia por branch: usar a prévia para validar antes de trocar a `main`.
 
 ## Preços no FAQ
 Nunca escrever "sem mensalidade". Resposta por serviço:
@@ -59,7 +65,7 @@ Eventos nomeados de forma consistente: clique no card de serviço (com o serviç
 Mobile validado (sem rolagem horizontal), performance medida, SEO básico e Open Graph, eventos testados, formulário testado de ponta a ponta até o WhatsApp, console sem erros, domínio e SSL funcionando. "Está publicado" não é "está pronto".
 
 ## Pendências abertas
-1. Conta demo do CRM e capturas das telas.
+1. Capturas reais do CRM (só depois que o MVP for finalizado; por ora, tour em réplica HTML).
 2. Serviço e link do Orthoprime.
 3. Plano de manutenção de sites e landing pages: sim ou não.
 4. Copy nova do site institucional (a copy da LP antiga serve só de referência; a frase "sem mensalidade" está proibida).
